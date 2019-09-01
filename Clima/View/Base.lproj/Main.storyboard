@@ -31,13 +31,12 @@
                                                     <constraint firstAttribute="width" constant="40" id="Gdg-gN-rvc"/>
                                                     <constraint firstAttribute="height" constant="40" id="JLX-SP-jLB"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2eh-wL-W34">
                                                 <rect key="frame" x="50" y="0.0" width="274" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -47,14 +46,14 @@
                                                     <constraint firstAttribute="height" constant="40" id="fiO-2W-UTJ"/>
                                                     <constraint firstAttribute="width" constant="40" id="fn6-Kr-iSP"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mYn-vV-MBC">
                                         <rect key="frame" x="254" y="49.5" width="120" height="120.5"/>
-                                        <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="GFV-i5-W4H"/>
                                             <constraint firstAttribute="height" constant="120" id="mX8-O6-OMh"/>
@@ -66,27 +65,23 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9o-tW-03D" userLabel="Temperature Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="93" height="119.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="80"/>
-                                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7Y-Fj-S2q" userLabel="Temperature Label">
                                                 <rect key="frame" x="93" y="0.0" width="39" height="119.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="100"/>
-                                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHH-vY-Mrb" userLabel="Temperature Label">
                                                 <rect key="frame" x="132" y="0.0" width="67" height="119.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="100"/>
-                                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beijing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWP-r8-Jsy">
-                                        <rect key="frame" x="287" y="309.5" width="87" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWP-r8-Jsy">
+                                        <rect key="frame" x="276" y="309.5" width="98" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ti-bh-8Fw">
@@ -120,7 +115,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="3161" height="2500"/>
+        <image name="background" width="1377" height="1377"/>
         <image name="location.circle.fill" catalog="system" width="64" height="62"/>
         <image name="magnifyingglass" catalog="system" width="64" height="60"/>
         <image name="sun.max" catalog="system" width="64" height="62"/>

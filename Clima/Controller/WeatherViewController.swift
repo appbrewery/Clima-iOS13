@@ -17,9 +17,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     
+    //initialize weather manager
+    var weatherManger = WeatherManger()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //text field should report back to view controller ..ie types return
         searchTextField.delegate = self
     }
@@ -54,6 +57,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         // use searchfield.text to get weather for that city
+        if let city = searchTextField.text {
+        weatherManger.fetchWeather(cityName: city)
+        print(city)
+        }
         
         //clear textfield after typing
         searchTextField.text = ""

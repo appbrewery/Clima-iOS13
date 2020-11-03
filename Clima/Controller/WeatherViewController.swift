@@ -52,8 +52,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
             return false
         }
     }
-    
-    //Troubleshoot Print Message not Appearing
+
     
     // delegate method to clear search field after end editiing
     func textFieldDidEndEditing(_ textField: UITextField) {

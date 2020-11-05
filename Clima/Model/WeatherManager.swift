@@ -43,7 +43,7 @@ struct WeatherManger {
                 
                 if let safeData = data {
 //                    let dataString = String(data: safeData, encoding: .utf8)
-                    print(safeData)
+//                    print(safeData)
                     
                     //DONT PRINT. Parse Jason DATA to be readable
                     parseJSON(weatherData: safeData)
@@ -53,7 +53,6 @@ struct WeatherManger {
             
             //4 Start the task
             task.resume()
-            
         }
     }
     
@@ -62,10 +61,11 @@ struct WeatherManger {
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             print(decodedData.list)
+//            print(decodedData)
+
         } catch {
             print(error)
         }
     }
-    
     
 }

@@ -66,8 +66,7 @@ struct WeatherManger {
 //            print(decodedData.list[0].weather[0].id)
             
             let id = decodedData.list[0].weather[0].id
-            getConditionName(weatherID: id)
-            
+            print(getConditionName(weatherID: id))
             
         } catch {
             print(error)
@@ -77,34 +76,24 @@ struct WeatherManger {
     
     // get weather ID switch
     func getConditionName(weatherID: Int) -> String {
-        
-        let thunderstorm = UIImage(systemName: "cloud.bolt", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let drizzle = UIImage(systemName: "cloud.drizzle", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let rain = UIImage(systemName: "cloud.heavyrain", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let snow = UIImage(systemName: "snow", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let atmosphere = UIImage(systemName: "smoke", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let clear = UIImage(systemName: "cloud", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-        let clouds = UIImage(systemName: "cloud.fog", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-    
         switch weatherID {
         case 200...240:
-            return thunderstorm
+            return "cloud.bolt"
         case 300...350:
-            return drizzle
+            return "cloud.drizzle"
         case 500...550:
-            return rain
+            return "cloud.rain"
         case 600...630:
-            return snow
+            return "cloud.snow"
         case 700...782:
-            return atmosphere
+            return "cloud.fog"
         case 800:
-            return clear
+            return "sun.max"
         case 801...805:
-            return clouds
+            return "cloud.bolt"
         default:
-            return clear
+            return "cloud"
         }
-        
     }
     
 }

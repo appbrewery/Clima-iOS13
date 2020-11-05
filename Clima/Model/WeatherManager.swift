@@ -66,33 +66,15 @@ struct WeatherManger {
 //            print(decodedData.list[0].weather[0].id)
             
             let id = decodedData.list[0].weather[0].id
-            print(getConditionName(weatherID: id))
+            let temp = decodedData.list[0].main.temp
+            let name = decodedData.list[0].name
+
+            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)
+//            print(weather.getConditionName(weatherID: id)) -- Use COmputed Property below
+            print(weather.conditionName)
             
         } catch {
             print(error)
-        }
-    }
-    
-    
-    // get weather ID switch
-    func getConditionName(weatherID: Int) -> String {
-        switch weatherID {
-        case 200...240:
-            return "cloud.bolt"
-        case 300...350:
-            return "cloud.drizzle"
-        case 500...550:
-            return "cloud.rain"
-        case 600...630:
-            return "cloud.snow"
-        case 700...782:
-            return "cloud.fog"
-        case 800:
-            return "sun.max"
-        case 801...805:
-            return "cloud.bolt"
-        default:
-            return "cloud"
         }
     }
     

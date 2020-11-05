@@ -8,8 +8,15 @@
 
 import Foundation
 
-
 struct WeatherData: Decodable {
-    let name: String
-    
+    let list: [List]
+//    let main: Main
 }
+
+struct List: Codable {
+    let name: String
+}
+
+//struct Main: Decodable {
+//    let temp: Double
+//}

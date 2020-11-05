@@ -15,9 +15,12 @@ struct WeatherModel {
     let cityName: String
     let temperature: Double
     
+    //formatted temp 1 decimal places
+    var temperatureString: String {
+        return String(format: "%.1f", temperature)
+    }
     
-    //computed Property
-    
+    //computed Property - Must be a variable and have data type
     var conditionName: String {
         switch conditionID {
         case 200...240:
@@ -43,5 +46,4 @@ struct WeatherModel {
 //    func getConditionName(weatherID: Int) -> String {
 //    }
 
-    
 }

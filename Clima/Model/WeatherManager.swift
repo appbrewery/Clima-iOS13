@@ -72,6 +72,7 @@ struct WeatherManger {
             let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)
 //            print(weather.getConditionName(weatherID: id)) -- Use COmputed Property below
             print(weather.conditionName)
+            print(weather.temperatureString)
             
         } catch {
             print(error)

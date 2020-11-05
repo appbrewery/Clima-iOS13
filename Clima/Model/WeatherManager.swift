@@ -6,7 +6,7 @@
 //  Copyright © 2020 App Brewery. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //Networking Steps
 //1 Create URL
@@ -60,13 +60,51 @@ struct WeatherManger {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-            print(decodedData.list[0].name)
-            print(decodedData.list[0].main.temp)
-            print(decodedData.list[0].weather.description)
-
+//            print(decodedData.list[0].name)
+//            print(decodedData.list[0].main.temp)
+//            print(decodedData.list[0].weather.description)
+//            print(decodedData.list[0].weather[0].id)
+            
+            let id = decodedData.list[0].weather[0].id
+            getConditionName(weatherID: id)
+            
+            
         } catch {
             print(error)
         }
+    }
+    
+    
+    // get weather ID switch
+    func getConditionName(weatherID: Int) -> String {
+        
+        let thunderstorm = UIImage(systemName: "cloud.bolt", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let drizzle = UIImage(systemName: "cloud.drizzle", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let rain = UIImage(systemName: "cloud.heavyrain", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let snow = UIImage(systemName: "snow", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let atmosphere = UIImage(systemName: "smoke", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let clear = UIImage(systemName: "cloud", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+        let clouds = UIImage(systemName: "cloud.fog", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+    
+        switch weatherID {
+        case 200...240:
+            return thunderstorm
+        case 300...350:
+            return drizzle
+        case 500...550:
+            return rain
+        case 600...630:
+            return snow
+        case 700...782:
+            return atmosphere
+        case 800:
+            return clear
+        case 801...805:
+            return clouds
+        default:
+            return clear
+        }
+        
     }
     
 }

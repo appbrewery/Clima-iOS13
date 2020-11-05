@@ -19,15 +19,16 @@ struct WeatherData: Codable {
         let main: Main
         let weather: [Weather]
         
-        struct Main: Codable {
-            let temp: Double
-            let humidity: Int
-        }
-        
-        struct Weather: Codable {
-            let main: String
-            let description: String
-        }
+    }
+    
+    struct Main: Codable {
+        let temp: Double
+        let humidity: Int
+    }
+    
+    struct Weather: Codable {
+        let description: String
+        let id: Int
     }
 }
 
@@ -39,7 +40,7 @@ struct WeatherData: Codable {
  
 
 
-//// Angela Version
+////// Angela Version
 //struct WeatherData: Codable {
 //    let name: String
 //    let main: Main
@@ -53,25 +54,4 @@ struct WeatherData: Codable {
 //struct Weather: Codable {
 //    let description: String
 //    let id: Int
-//}
-
-// JSON BABY Version
-//struct WWW: Codable {
-//
-//    let list: [Lists]
-//
-//    struct Lists: Codable {
-//        let name: String
-//        let main: Main
-//        let weather: [Weather]
-//
-//        struct Main: Codable {
-//            let temp: Double
-//            let feelsLike: Double
-//            let tempMin: Double
-//            let tempMax: Double
-//            let pressure: Int
-//            let humidity: Int
-//        }
-//    }
 //}

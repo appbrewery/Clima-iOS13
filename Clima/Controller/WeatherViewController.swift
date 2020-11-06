@@ -36,6 +36,8 @@ class WeatherViewController: UIViewController {
 }
 // extension for UItextfield Delegate
 
+//MARK: UITextFieldDelegate
+
 extension WeatherViewController: UITextFieldDelegate {
     
     
@@ -79,6 +81,8 @@ extension WeatherViewController: UITextFieldDelegate {
 }
 
 // weather manager extension
+//MARK: - WeatherManagerDelegate
+
 extension WeatherViewController: WeatherManagerDelegate {
     
     

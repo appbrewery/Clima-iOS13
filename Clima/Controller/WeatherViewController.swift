@@ -10,7 +10,8 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
+class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+    
     
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -18,14 +19,14 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchTextField: UITextField!
     
     //initialize weather manager
-    var weatherManager = WeatherManger()
+    var weatherManager = WeatherManager()
  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //text field should report back to view controller ..ie types return
         searchTextField.delegate = self
-//        weatherManager.delegate = self
+        weatherManager.delegate = self
     }
     
     //MARK: Actions
@@ -67,6 +68,13 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         //clear textfield after typing
         searchTextField.text = ""
     }
+    
+    // Update Weather using delegate pattern - create protocol -
+    func didUpdateWeather(_ weatherManager: WeatherManager, _ weather: WeatherModel) {
+        print(weather.temperature)
+    }
+    
+  
     
 }
 

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WeatherManagerDelegate {
+    func didUpdateWeather(weather: WeatherModel)
+}
+
 //Networking Steps
 //1 Create URL
 //2 CreateURLSession
@@ -16,6 +20,9 @@ import UIKit
 
 struct WeatherManger {
     let weatherURL = "https://api.openweathermap.org/data/2.5/find?appid=b687b8bdcf2dd6f944eb5e451446e887&units=metric"
+    
+    //delegate for weather manager
+    var delegate: WeatherManagerDelegate?
     
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
@@ -46,7 +53,9 @@ struct WeatherManger {
 //                    print(safeData)
                     
                     //DONT PRINT. Parse Jason DATA to be readable
-                    parseJSON(weatherData: safeData)
+                    if let weather = self.parseJSON(weatherData: safeData) {
+                        self.delegate?.didUpdateWeather(weather: weather)
+                    }
                     
                 }
             }
@@ -56,7 +65,7 @@ struct WeatherManger {
         }
     }
     
-    func parseJSON(weatherData: Data) {
+    func parseJSON(weatherData: Data) -> WeatherModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
@@ -73,9 +82,11 @@ struct WeatherManger {
 //            print(weather.getConditionName(weatherID: id)) -- Use COmputed Property below
             print(weather.conditionName)
             print(weather.temperatureString)
+            return weather
             
         } catch {
             print(error)
+            return nil
         }
     }
     

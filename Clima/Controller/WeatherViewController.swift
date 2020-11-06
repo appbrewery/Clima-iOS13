@@ -73,6 +73,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         DispatchQueue.main.async {
             self.temperatureLabel.text = weather.temperatureString
             self.cityLabel.text = weather.cityName
+            self.conditionImageView.image = UIImage(systemName: weather.conditionName)  
         }
     }
     

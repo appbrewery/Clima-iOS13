@@ -33,13 +33,6 @@ struct WeatherData: Codable {
 }
 
 
-
-
-
-
- 
-
-
 ////// Angela Version
 //struct WeatherData: Codable {
 //    let name: String

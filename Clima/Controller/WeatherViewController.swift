@@ -33,7 +33,6 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     
     @IBAction func searchBtnWasPressed(_ sender: UIButton) {
         searchTextField.endEditing(true)
-        print(searchTextField.text!)
         
     }
     
@@ -62,16 +61,24 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         // use searchfield.text to get weather for that city
         if let city = searchTextField.text {
         weatherManager.fetchWeather(cityName: city)
-        print(city)
+//        print(city)
         }
-        
         //clear textfield after typing
         searchTextField.text = ""
     }
     
     // Update Weather using delegate pattern - create protocol -
     func didUpdateWeather(_ weatherManager: WeatherManager, _ weather: WeatherModel) {
-        print(weather.temperature)
+//        print(weather.temperature)
+        DispatchQueue.main.async {
+            self.temperatureLabel.text = weather.temperatureString
+            self.cityLabel.text = weather.cityName
+        }
+    }
+    
+    //didfail with error
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
   

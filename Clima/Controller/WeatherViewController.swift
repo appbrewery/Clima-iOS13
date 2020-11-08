@@ -8,7 +8,16 @@
 
 //API 06116b0878eabd7a6e0e7dbebdb89940
 
+//Location GPS Steps
+// import CoreLocation
+// var locationManager = CLLocationManager()
+// trigeer location Auth in ViewDIdload - locationManager.requestWhenInUseAuthorization()
+// learn how to use accuracy §§§§§§§ iOS 14+
+//info.plist - add - Privacy - Location When In Use Usage Description
+
+
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController {
     
@@ -20,13 +29,14 @@ class WeatherViewController: UIViewController {
     
     //initialize weather manager
     var weatherManager = WeatherManager()
- 
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //text field should report back to view controller ..ie types return
         searchTextField.delegate = self
         weatherManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
     
     //MARK: Actions

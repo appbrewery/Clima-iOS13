@@ -12,14 +12,23 @@
 // import CoreLocation
 // var locationManager = CLLocationManager()
 // trigeer location Auth in ViewDIdload - locationManager.requestWhenInUseAuthorization()
-// learn how to use accuracy §§§§§§§ iOS 14+
-//info.plist - add - Privacy - Location When In Use Usage Description
+// ****** learn how to use accuracy §§§§§§§ iOS 14+
+//info.plist - add - Privacy - Location When In Use Usage Description - Run and Test
+// request location -  locationManager.requestLocation()
+//******* if using app where it requires constant mointoring / tracking - use locationManager.startMonitoring(for: <#T##CLRegion#>)  instead of  locationManager.requestLocation()
+
+// add the CLLocationManagerDelegate protocol and delegate
 
 
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController {
+
+protocol CLLocationManagerDelegate {
+    
+}
+
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBOutlet weak var conditionImageView: UIImageView!
@@ -37,6 +46,11 @@ class WeatherViewController: UIViewController {
         searchTextField.delegate = self
         weatherManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        //request location
+        locationManager.requestLocation()
+        
+        
     }
     
     //MARK: Actions
@@ -112,3 +126,7 @@ extension WeatherViewController: WeatherManagerDelegate {
     }
     
 }
+
+//MARK: - Location Manager
+
+ 

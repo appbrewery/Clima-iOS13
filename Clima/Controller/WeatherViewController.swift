@@ -13,22 +13,32 @@
 // var locationManager = CLLocationManager()
 // trigeer location Auth in ViewDIdload - locationManager.requestWhenInUseAuthorization()
 // ****** learn how to use accuracy §§§§§§§ iOS 14+
-//info.plist - add - Privacy - Location When In Use Usage Description - Run and Test
+// info.plist - add - Privacy - Location When In Use Usage Description - Run and Test
+//set delegate before requesting location
+// Assign delegate   locationManager.delegate = self
+
+// desiredAccuracy of location locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
 // request location -  locationManager.requestLocation()
 //******* if using app where it requires constant mointoring / tracking - use locationManager.startMonitoring(for: <#T##CLRegion#>)  instead of  locationManager.requestLocation()
 
-// add the CLLocationManagerDelegate protocol and delegate methods (2)
 
-// Assign delegate   locationManager.delegate = self
-// desiredAccuracy of location locationManager.desiredAccuracy = kCLLocationAccuracyBest
+// add the CLLocationManagerDelegate protocol and delegate methods (2)
+// didUpdateLocations & didFailWithError - Use Print inside function to check output of location
+//   inside didUpdateLocations - print("You are here: \(locationManager.location?.coordinate.latitude) + \(locationManager.location?.coordinate.longitude)")
+//print(locationManager.location) OR UNWRAP LOCATION LONG/LAT
+//if let location = locations.last {
+//    let long = location.coordinate.longitude
+//    let lat = location.coordinate.latitude
+//
+//    print("Final Unwrapped Longitude: \(long) & \(lat)")
+//}
 
 
 import UIKit
 import CoreLocation
 
-
 class WeatherViewController: UIViewController {
-    
     
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -45,6 +55,7 @@ class WeatherViewController: UIViewController {
         searchTextField.delegate = self
         weatherManager.delegate = self
         
+        //set delegate before requesting location
         locationManager.delegate = self
         
         locationManager.requestWhenInUseAuthorization()
@@ -55,7 +66,12 @@ class WeatherViewController: UIViewController {
     }
     
     //MARK: Actions
-
+    
+    //location button
+    @IBAction func locationBtnWasPressed(_ sender: UIButton) {
+        
+    }
+    
 
     
 }
@@ -128,7 +144,7 @@ extension WeatherViewController: WeatherManagerDelegate {
     
 }
 
-//MARK: - Location Manager Delegate
+//MARK: - CLLocation Manager Delegate
 
 extension WeatherViewController: CLLocationManagerDelegate {
     
@@ -136,6 +152,14 @@ extension WeatherViewController: CLLocationManagerDelegate {
         //needed
         print("You are here: \(locationManager.location?.coordinate.latitude) + \(locationManager.location?.coordinate.longitude)")
         print(locationManager.location)
+        
+        if let location = locations.last {
+            let long = location.coordinate.longitude
+            let lat = location.coordinate.latitude
+            
+//            print("Final Unwrapped Longitude: \(long) & \(lat)")
+            weatherManager.fetchWeather(latitude: lat, longitude: long)
+        }
     }
     
 //    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

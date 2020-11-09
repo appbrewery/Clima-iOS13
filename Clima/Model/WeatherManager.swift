@@ -30,7 +30,7 @@ struct WeatherManager {
     var delegate: WeatherManagerDelegate?
     
     
-    //func fetchWeatherLocation
+    //func fetchWeatherLocation using long/lat - Can use same Function Name as long as different Parameters
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
@@ -38,6 +38,7 @@ struct WeatherManager {
         
     }
     
+    //func fetchWeatherLocation using City Name Entry
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
         performRequest(with: urlString)

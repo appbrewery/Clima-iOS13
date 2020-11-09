@@ -70,6 +70,8 @@ class WeatherViewController: UIViewController {
     //location button
     @IBAction func locationBtnWasPressed(_ sender: UIButton) {
         
+        locationManager.requestLocation()
+        
     }
     
 

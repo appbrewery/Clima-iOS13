@@ -17,18 +17,17 @@
 // request location -  locationManager.requestLocation()
 //******* if using app where it requires constant mointoring / tracking - use locationManager.startMonitoring(for: <#T##CLRegion#>)  instead of  locationManager.requestLocation()
 
-// add the CLLocationManagerDelegate protocol and delegate
+// add the CLLocationManagerDelegate protocol and delegate methods (2)
+
+// Assign delegate   locationManager.delegate = self
+// desiredAccuracy of location locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
 
 import UIKit
 import CoreLocation
 
 
-protocol CLLocationManagerDelegate {
-    
-}
-
-class WeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController {
     
     
     @IBOutlet weak var conditionImageView: UIImageView!
@@ -45,12 +44,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         //text field should report back to view controller ..ie types return
         searchTextField.delegate = self
         weatherManager.delegate = self
+        
+        locationManager.delegate = self
+        
         locationManager.requestWhenInUseAuthorization()
         
-        //request location
+        //Requests the one-time delivery of the user’s current location.
         locationManager.requestLocation()
-        
-        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     //MARK: Actions
@@ -127,6 +128,23 @@ extension WeatherViewController: WeatherManagerDelegate {
     
 }
 
-//MARK: - Location Manager
+//MARK: - Location Manager Delegate
 
- 
+extension WeatherViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //needed
+        print("You are here: \(locationManager.location?.coordinate.latitude) + \(locationManager.location?.coordinate.longitude)")
+        print(locationManager.location)
+    }
+    
+//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+//
+//    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("unable to get location: \(error)")
+    }
+    
+    
+}

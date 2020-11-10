@@ -16,6 +16,8 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
     
+    let weatherInstance = WeatherManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
@@ -27,24 +29,27 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchTextField.endEditing(true)
-        print(searchTextField.text ?? "")
+        textField.endEditing(true)
+        print(textField.text ?? "")
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if(searchTextField.text != ""){
+        if(textField.text != ""){
             return true
         }
-        searchTextField.placeholder = "enter value"
+        textField.placeholder = "enter value"
         return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         //Fetch value of entered text
         //Fetch weather of the city
-        searchTextField.placeholder = "Search"
-        searchTextField.text = ""
+        if let cityName = textField.text {
+            weatherInstance.fetchWeatherURL(cityName: cityName)
+        }
+        textField.placeholder = "Search"
+        textField.text = ""
     }
 }
 

@@ -16,10 +16,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
     
-    let weatherInstance = WeatherManager()
-    
+    var weatherInstance = WeatherManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherInstance.delegate = self
         searchTextField.delegate = self
     }
     
@@ -53,3 +53,11 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension WeatherViewController: WeatherManagerDelegate{
+    func didUpdateWeather(weather: WeatherModel) {
+        print(weather)
+        print(weather.conditionName)
+        
+    }
+    
+}

@@ -46,7 +46,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         //Fetch value of entered text
         //Fetch weather of the city
         if let cityName = textField.text {
-            weatherInstance.fetchWeatherURL(cityName: cityName)
+            weatherInstance.fetchWeatherURL(cityName)
         }
         textField.placeholder = "Search"
         textField.text = ""
@@ -54,10 +54,13 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension WeatherViewController: WeatherManagerDelegate{
-    func didUpdateWeather(weather: WeatherModel) {
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         print(weather)
         print(weather.conditionName)
-        
     }
     
 }

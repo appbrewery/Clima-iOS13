@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
+class WeatherViewController: UIViewController {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var conditionImageView: UIImageView!
@@ -28,6 +28,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         print(searchTextField.text ?? "")
     }
     
+    
+}
+extension WeatherViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         print(textField.text ?? "")

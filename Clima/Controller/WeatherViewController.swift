@@ -152,10 +152,12 @@ extension WeatherViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //needed
-        print("You are here: \(locationManager.location?.coordinate.latitude) + \(locationManager.location?.coordinate.longitude)")
-        print(locationManager.location)
+//        print("You are here: \(locationManager.location?.coordinate.latitude) + \(locationManager.location?.coordinate.longitude)")
+//        print(locationManager.location)
         
         if let location = locations.last {
+        
+            locationManager.stopUpdatingLocation()
             let long = location.coordinate.longitude
             let lat = location.coordinate.latitude
             
@@ -163,10 +165,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
             weatherManager.fetchWeather(latitude: lat, longitude: long)
         }
     }
-    
-//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//
-//    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("unable to get location: \(error)")

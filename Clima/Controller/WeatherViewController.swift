@@ -13,12 +13,25 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var txtFieldSearch: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        txtFieldSearch.delegate = self
     }
 
+    @IBAction func btnSearchAction(_ sender: UIButton) {
+        print(txtFieldSearch.text!)
+        txtFieldSearch.endEditing(true)
+    }
+    
+}
 
+extension WeatherViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(textField.text!)
+        txtFieldSearch.endEditing(true)
+        return true
+    }
 }
 

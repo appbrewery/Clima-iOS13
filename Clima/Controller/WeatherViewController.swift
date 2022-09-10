@@ -15,13 +15,15 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var txtFieldSearch: UITextField!
     
+    var weatherManager = WeatherManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         txtFieldSearch.delegate = self
     }
 
     @IBAction func btnSearchAction(_ sender: UIButton) {
-        print(txtFieldSearch.text!)
+        weatherManager.fetchWether(cityname: txtFieldSearch.text!)
         txtFieldSearch.endEditing(true)
     }
     
@@ -29,7 +31,7 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(textField.text!)
+        weatherManager.fetchWether(cityname: textField.text!)
         txtFieldSearch.endEditing(true)
         return true
     }

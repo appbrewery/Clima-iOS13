@@ -11,7 +11,7 @@ import Foundation
 struct WeatherManager {
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=f52de806f4ee5a499a3b8081decb1780"
     
-    func fetchWether(cityname: String) {
+    func fetchWeather(cityname: String) {
         let urlString = "\(weatherURL)&q=\(cityname)"
         makeReqest(urlString: urlString)
     }
@@ -38,28 +38,47 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: data)
-            print(decodedData.name)
-            print(decodedData.main.temp)
-            print(decodedData.weather[0].main)
+            print(getConditionName(weatherId: decodedData.weather[0].id))
         } catch {
             print(error)
+        }
+    }
+    
+    private func getConditionName(weatherId: Int) -> String {
+        switch weatherId {
+        case 200...232:
+            return "cloud.bolt"
+        case 300...321:
+            return "cloud.drizzle"
+        case 500...531:
+            return "cloud.rain"
+        case 600...622:
+            return "cloud.snow"
+        case 701...781:
+            return "cloud.fog"
+        case 800:
+            return "sun.max"
+        case 801...804:
+            return "cloud.bolt"
+        default:
+            return "cloud"
         }
         
     }
 }
 
 extension String {
- func getCleanedURL() -> URL? {
-    guard self.isEmpty == false else {
+    func getCleanedURL() -> URL? {
+        guard self.isEmpty == false else {
+            return nil
+        }
+        if let url = URL(string: self) {
+            return url
+        } else {
+            if let urlEscapedString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) , let escapedURL = URL(string: urlEscapedString){
+                return escapedURL
+            }
+        }
         return nil
     }
-    if let url = URL(string: self) {
-        return url
-    } else {
-        if let urlEscapedString = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) , let escapedURL = URL(string: urlEscapedString){
-            return escapedURL
-        }
-    }
-    return nil
- }
 }

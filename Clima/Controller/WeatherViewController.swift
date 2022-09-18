@@ -23,7 +23,7 @@ class WeatherViewController: UIViewController {
     }
 
     @IBAction func btnSearchAction(_ sender: UIButton) {
-        weatherManager.fetchWether(cityname: txtFieldSearch.text!)
+        weatherManager.fetchWeather(cityname: txtFieldSearch.text!)
         txtFieldSearch.endEditing(true)
     }
     
@@ -31,7 +31,7 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        weatherManager.fetchWether(cityname: textField.text!)
+        weatherManager.fetchWeather(cityname: textField.text!)
         txtFieldSearch.endEditing(true)
         return true
     }

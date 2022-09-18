@@ -8,8 +8,14 @@
 
 import Foundation
 
+protocol WeatherManagerProtocol {
+    func didUpdateWeather(weather: WeatherModel)
+}
+
 struct WeatherManager {
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=f52de806f4ee5a499a3b8081decb1780"
+    
+    var delegate: WeatherManagerProtocol?
     
     func fetchWeather(cityname: String) {
         let urlString = "\(weatherURL)&q=\(cityname)"
@@ -26,7 +32,9 @@ struct WeatherManager {
                 }
                 
                 if let safedata = data {
-                    parseData(data: safedata)
+                    if let weather = parseData(data: safedata) {
+                        self.delegate?.didUpdateWeather(weather: weather)
+                    }
                 }
             }
             
@@ -34,37 +42,23 @@ struct WeatherManager {
         }
     }
     
-    private func parseData(data: Data) {
+    private func parseData(data: Data) -> WeatherModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: data)
-            print(getConditionName(weatherId: decodedData.weather[0].id))
+            let id = decodedData.weather[0].id
+            let city = decodedData.name
+            let temperature = decodedData.main.temp
+            
+            let weather = WeatherModel(conditionId: id, cityName: city, temperature: temperature)
+            
+            return weather
         } catch {
             print(error)
+            return nil
         }
     }
     
-    private func getConditionName(weatherId: Int) -> String {
-        switch weatherId {
-        case 200...232:
-            return "cloud.bolt"
-        case 300...321:
-            return "cloud.drizzle"
-        case 500...531:
-            return "cloud.rain"
-        case 600...622:
-            return "cloud.snow"
-        case 701...781:
-            return "cloud.fog"
-        case 800:
-            return "sun.max"
-        case 801...804:
-            return "cloud.bolt"
-        default:
-            return "cloud"
-        }
-        
-    }
 }
 
 extension String {

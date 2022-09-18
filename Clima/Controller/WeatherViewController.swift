@@ -19,6 +19,7 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherManager.delegate = self
         txtFieldSearch.delegate = self
     }
 
@@ -34,6 +35,12 @@ extension WeatherViewController: UITextFieldDelegate {
         weatherManager.fetchWeather(cityname: textField.text!)
         txtFieldSearch.endEditing(true)
         return true
+    }
+}
+
+extension WeatherViewController: WeatherManagerProtocol {
+    func didUpdateWeather(weather: WeatherModel) {
+        print("LALALALA = \(weather.conditionName)")
     }
 }
 

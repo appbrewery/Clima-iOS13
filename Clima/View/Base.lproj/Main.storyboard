@@ -35,10 +35,14 @@
                                                 </constraints>
                                                 <color key="tintColor" name="TextColor"/>
                                                 <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="currentLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L2e-sK-KDN"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2eh-wL-W34">
                                                 <rect key="frame" x="50" y="0.0" width="274" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemFillColor"/>
+                                                <color key="textColor" name="TextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -50,6 +54,9 @@
                                                 </constraints>
                                                 <color key="tintColor" name="TextColor"/>
                                                 <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lzh-4s-YPX"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -67,7 +74,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gx9-I8-UoC">
                                                 <rect key="frame" x="98.5" y="130" width="177" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9o-tW-03D" userLabel="Temperature Label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9o-tW-03D" userLabel="Temperature Label">
                                                         <rect key="frame" x="0.0" y="0.0" width="86.5" height="100"/>
                                                         <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="90"/>
                                                         <color key="textColor" name="TextColor"/>
@@ -131,6 +138,7 @@
                     <connections>
                         <outlet property="cityLabel" destination="CWP-r8-Jsy" id="8cQ-3l-ufV"/>
                         <outlet property="conditionImageView" destination="mYn-vV-MBC" id="gpD-FU-YB0"/>
+                        <outlet property="searchTextField" destination="2eh-wL-W34" id="6eT-1B-0hh"/>
                         <outlet property="temperatureLabel" destination="w9o-tW-03D" id="mF4-vV-JxK"/>
                     </connections>
                 </viewController>
@@ -145,7 +153,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="sun.max" catalog="system" width="128" height="125"/>
         <namedColor name="TextColor">
-            <color red="0.045829249838219517" green="0.14163963086043532" blue="0.35040992197364262" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.046000000089406967" green="0.14200000464916229" blue="0.34999999403953552" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

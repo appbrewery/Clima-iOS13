@@ -19,7 +19,13 @@ struct WeatherManager {
     // Code Execution Flow :
     // `fetchWeather` => `performRequest` => `parseJSON` => `performRequest` => use delegate to execute `didUpdateWeather`
     
-    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=9fc56d9cea6967d9a5606f294e70e74d&units=metric"
+    var apiKey: String {
+        let weatherAPI = WeatherApiKey()
+        return weatherAPI.key
+    }
+    var weatherURL: String {
+        return "https://api.openweathermap.org/data/2.5/weather?appid=\(apiKey)&units=metric"
+    }
     
     var delegate: WeatherManagerDelegate?
     
@@ -42,19 +48,23 @@ struct WeatherManager {
         // 1. Create a URL
         if let url = URL(string: urlString) { // String might have typo
             // 2. Create URL session
+
             let session = URLSession(configuration: .default)
-            
             // 3. Give the session a task
+
             let task = session.dataTask(with: url) { data, response, error in
                 // Check Error
                 if error != nil {  // If have error
                     self.delegate?.didFailWithError(error: error!)
+       
                 }
                 // Fetch and Store Data
                 if let safeData = data {
+          
                     // Unwrap becuase `parseJSON` might be `nil`
                     if let weather = self.parseJSON(safeData) { // calling method from current struct so use `self`
                         // Apply Delegate Design Pattern
+        
                         self.delegate?.didUpdateWeather(self, weather: weather)
                     }
                 }
@@ -81,6 +91,7 @@ struct WeatherManager {
             return weather
         } catch {
             delegate?.didFailWithError(error: error)
+            print("Please remember to input your own OpenWeather API key in  Clima/Model/WeatherAPI, see README.md")
             return nil
         }
     }

@@ -11,11 +11,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+	var keys: NSDictionary?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+		// Override point for customization after application launch.
+		if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+				keys = NSDictionary(contentsOfFile: path)
+			}
+		
+		return true
     }
 
     // MARK: UISceneSession Lifecycle
